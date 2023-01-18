@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,21 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, "index"]);
 
-Route::get('/qw', function (){
-    return response()->json(['test' => 'ok']);
-});
+Route::get('/create', [RolesController::class,'create']);
 
-Route::put('/', function (){
-    return response()-> json(['test' => 'ok'] );
-});
+Route::get('/index', [RolesController::class, 'index']);
 
-Route::group(array('middleware' => ['web']), function () {
-    Route::post('/foo', function () {
-        echo 1;
-        return;
-    });
-});
+
+
