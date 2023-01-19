@@ -23,7 +23,13 @@ class RolesController extends Controller
     public function index()
     {
         //return response()->json(Role::get());
-        //return Role::whereNotNull('created_at')->orWhere('id', '>', 1)->toSql();
+        //return dd(Role::whereNotNull('created_at')->orWhere('id', '=', 1)->toSql());
         return Role::where('created_at','=', null)->get();
+    }
+
+    public function show($roleId)
+    {
+        $role = Role::find($roleId);
+        return response() -> json(['data' => $role]);
     }
 }
